@@ -6,8 +6,13 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+<<<<<<< HEAD:frontend/package.json
     "axios": "^0.27.2",
     "bootstrap": "^5.2.1",
+=======
+    "express": "^4.18.1",
+    "mongoose": "^6.6.2",
+>>>>>>> bb1cba71703d1a0b2c1c8816a6e64cfb7dd73f4c:package.json
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
     "react-dom": "^18.2.0",
