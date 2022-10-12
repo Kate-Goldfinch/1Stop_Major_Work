@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "http://localhost:3001/products/";
+const baseURL = "http://localhost:3001/";
 
 // const createUser = (user) => {
 //   const request = axios.post(baseURL + "auth/register", user);
@@ -17,8 +17,14 @@ const searchProducts = (params) => {
   return request.then((response) => response.data);
 };
 
+// const getProducts = () => {
+//   const request = axios.get(`${baseURL}/api/products`);
+//   return request.then((response) => response.data);
+// };
+
+//For debugging - delete 
 const getProducts = () => {
-  const request = axios.get(baseURL);
+  const request = axios.get(`${baseURL}products`);
   return request.then((response) => response.data);
 };
 

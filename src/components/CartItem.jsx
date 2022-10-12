@@ -4,10 +4,17 @@ import {Stack,Button} from 'react-bootstrap'
 
 const CartItem = ({item}) => {
 const product = item.product
+console.log(item.options)
 const {removeFromCart} = useCart()
 const currency = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD' })
+
+const renderOptions = Object.entries(item.options)?.map(option =>{
+    return(
+        <div>{option[0]}: {option[1]}</div>
+    )
+})
 
   return (
     <Stack direction = "horizontal" 
@@ -25,6 +32,7 @@ const currency = new Intl.NumberFormat('en-US', {
             <div className='text-muted'>
                 {currency.format(product.price)}
             </div>
+            {renderOptions}
         </div>
         <div>
             {currency.format(product.price * item.quantity)}

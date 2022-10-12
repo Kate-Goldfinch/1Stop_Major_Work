@@ -19,7 +19,6 @@ const App = ()=>{
       <Router>
         <CartProvider>
           <NavBar/>
-
           <Routes>
             <Route path="/search" element={<SearchPage/>} />
             <Route path="/products/:id" element={<ProductPage/>} />

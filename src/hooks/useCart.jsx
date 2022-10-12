@@ -15,16 +15,15 @@ export const CartProvider =({children}) =>{
     const totalItems = cart.reduce((qty, item) => item.quantity + qty,0)
 
     const getItemQuantity = (product => cart.find(item => item.id === product._id)?.quantity || 0)
-    const increaseCartQuantity = (product, qty)=>{
-        console.log(product)
+    const increaseCartQuantity = (product, qty, options)=>{
         setCart(currCart=>{
             if(currCart.find(item => item.product._id ===product._id)==null){
-                return [...currCart, {product, quantity: qty}]
+                return [...currCart, {product, quantity: qty, options}]
             }
             else {
                 return currCart.map(item =>{
                     if(item.product._id===product._id){
-                        return{...item, quantity:item.quantity+qty}
+                        return{...item, quantity:item.quantity+qty,options}
                     } else{
                         return item
                     }
