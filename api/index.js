@@ -8,10 +8,18 @@ const cartRoute = require("./routes/cart");
 const cors = require("cors");
 dotenv.config();
 
-mongoose
-	.connect(process.env.MONGO_URL)
-	.then(() => console.log("DB Connected!"))
-	.catch((err) => console.log(err));
+const databaseConnect = () => {
+	mongoose.connect(process.env.MONGO_URL,{
+		 useNewUrlParser : true,
+		 useUnifiedTopology : true
+	}).then(()=>{
+		 console.log('Mongodb Database Connected')
+	}).catch(error=>{
+		 console.log(error)
+	})
+}
+
+
 
 app.use(cors());
 app.use(express.json());
@@ -20,6 +28,8 @@ app.use("/api/products", productRoute);
 app.use("/api/carts", cartRoute);
 
 const PORT = process.env.PORT || 3001;
+
+databaseConnect();
 
 app.listen(PORT, function () {
 	console.log(`Backend running on port: ${PORT}`);
