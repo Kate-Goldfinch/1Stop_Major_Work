@@ -1,18 +1,6 @@
 const router = require("express").Router();
 const User = require("../models/User");
 
-//CREATE
-router.post("/", async (req, res) => {
-	const user = new User(req.body);
-	try {
-		const saved = await user.save();
-		const { password, ...userfields } = saved._doc;
-		res.status(200).json(userfields);
-	} catch (error) {
-		res.status(500).json(error);
-	}
-});
-
 //UPDATE
 router.put("/:id", async (req, res) => {
 	try {

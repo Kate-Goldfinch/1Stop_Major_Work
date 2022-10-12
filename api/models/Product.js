@@ -19,10 +19,7 @@ const productSchema = new mongoose.Schema(
 			type: Array,
 			required: true,
 		},
-		size: {
-			type: Array,
-		},
-		color: {
+		options: {
 			type: Array,
 		},
 		price: {
