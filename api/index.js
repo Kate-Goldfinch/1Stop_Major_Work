@@ -6,6 +6,7 @@ const userRoute = require("./routes/user");
 const productRoute = require("./routes/product");
 const cartRoute = require("./routes/cart");
 const cors = require("cors");
+dotenv.config();
 
 mongoose
 	.connect(process.env.MONGO_URL)
@@ -21,5 +22,5 @@ app.use("/api/carts", cartRoute);
 PORT = process.env.PORT || 3000;
 
 app.listen(PORT, function () {
-	console.log(f`Backend running on port: ${PORT}`);
+	console.log(`Backend running on port: ${PORT}`);
 });
