@@ -12,46 +12,44 @@ const baseURL = "http://localhost:3001/products/";
 //   return request.then((response) => response.data);
 // };
 
-// const searchUsers = (params) => {
-//   const request = axios.get(baseURL + "api/users", { params });
-//   return request.then((response) => response.data);
-// };
+const searchProducts = (params) => {
+  const request = axios.get(baseURL + "api/search", { params });
+  return request.then((response) => response.data);
+};
 
 const getProducts = () => {
   const request = axios.get(baseURL);
   return request.then((response) => response.data);
 };
 
-// const submitConversation = (title) => {
-//   const request = axios.post(`${baseURL}api/conversations/`, title);
+const getProductDetails = (id) => {
+  const request = axios.get(`${baseURL}api/products/${id}`);
+  return request.then((response) => response.data);
+};
+
+
+// const submitProduct = (id, product) => {
+//   const request = axios.post(`${baseURL}api/products/${id}`, product);
 //   return request.then((response) => response.data);
 // };
 
-// const getConversationDetails = (id) => {
-//   const request = axios.get(`${baseURL}api/conversations/${id}`);
-//   return request.then((response) => response.data);
-// };
-
-// const submitMessage = (id, message) => {
-//   const request = axios.post(`${baseURL}api/conversations/${id}`, message);
-//   return request.then((response) => response.data);
-// };
-
-// const deleteMessage = (convID, messageID) => {
+// const deleteProduct = (productID) => {
 //   const request = axios.delete(
-//     `${baseURL}api/conversations/${convID}/${messageID}`
+//     `${baseURL}api/products/${productID}`
 //   );
 //   return request.then((response) => response.data);
 // };
 
-// const updateMessage = (convID, messageID, newValue) => {
+// const updateProduct = (productID, newValue) => {
 //   const request = axios.put(
-//     `${baseURL}api/conversations/${convID}/${messageID}`,
-//     { likes: newValue }
+//     `${baseURL}api/products/${productID}`,
+//     { product: newValue }
 //   );
 //   return request.then((response) => response.data);
 // };
 
 export default {
-  getProducts
+  getProducts,
+  getProductDetails,
+  searchProducts
 };

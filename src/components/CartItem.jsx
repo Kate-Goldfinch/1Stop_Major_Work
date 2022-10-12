@@ -1,5 +1,5 @@
 import React from 'react'
-import {useCart} from '../CartContext'
+import { useCart } from "../hooks/useCart";
 import {Stack,Button} from 'react-bootstrap'
 
 const CartItem = ({item}) => {

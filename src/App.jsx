@@ -3,14 +3,12 @@ import {
   BrowserRouter as Router,
   Routes, Route
 } from "react-router-dom"
-
-import SearchBar from './components/SearchBar'
-import ProductList from './components/ProductList'
 import './App.css';
 import NavBar from './components/NavBar';
-import ProductPage from "./components/ProductPage";
-import { CartProvider} from "./CartContext"
-
+import HomePage from './pages/HomePage';
+import ProductPage from "./pages/ProductPage";
+import SearchPage from './pages/SearchPage';
+import { CartProvider } from './hooks/useCart';
 
 const App = ()=>{
 
@@ -21,10 +19,11 @@ const App = ()=>{
       <Router>
         <CartProvider>
           <NavBar/>
-            <SearchBar/>
+
           <Routes>
+            <Route path="/search" element={<SearchPage/>} />
             <Route path="/products/:id" element={<ProductPage/>} />
-            <Route path="/" element={<ProductList/>} />
+            <Route path="/" element={<HomePage/>} />
           </Routes>
         </CartProvider>
       </Router>

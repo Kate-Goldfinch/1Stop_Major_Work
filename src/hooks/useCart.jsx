@@ -1,5 +1,5 @@
 import { createContext, useState, useContext } from "react";
-import Cart from "./components/Cart";
+import Cart from "../components/Cart";
 
 const CartContext = createContext(null)
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useCart } from "../CartContext";
+import { useCart } from "../hooks/useCart";
 import CartItem from './CartItem'
 import Stack from 'react-bootstrap/Stack'
 import Offcanvas from 'react-bootstrap/Offcanvas';
