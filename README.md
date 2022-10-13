@@ -68,3 +68,17 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+### Week 1
+
+- creation of frontend
+- dummy data setup with local json db
+- backend routes setup for product/user/cart
+- mongo db created
+
+### Week 2
+
+- oauth implemented
+- db connected to fronted
+- auth routes for backend
+- product route altered
