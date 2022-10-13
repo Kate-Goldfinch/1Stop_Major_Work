@@ -20,7 +20,7 @@ const renderOptions = Object.entries(item.options)?.map(option =>{
     <Stack direction = "horizontal" 
             gap={2} 
             className='d-flex align-items-center'>
-        <img src={product.image} alt={product.title} style={{width: '125px', height: '75px'}}/>
+        <img src={product.img} alt={product.title} style={{width: '125px', height: '75px'}}/>
         <div className='me-auto'>
             <div>
                 {product.title} {item.quantity > 1 && (

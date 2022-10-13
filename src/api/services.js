@@ -13,20 +13,15 @@ const baseURL = "http://localhost:3001/";
 // };
 
 const searchProducts = (params) => {
-  const request = axios.get(baseURL + "api/search", { params });
+  const request = axios.get(`${baseURL}api/search`, { params });
   return request.then((response) => response.data);
 };
 
-// const getProducts = () => {
-//   const request = axios.get(`${baseURL}/api/products`);
-//   return request.then((response) => response.data);
-// };
-
-//For debugging - delete 
 const getProducts = () => {
-  const request = axios.get(`${baseURL}products`);
+  const request = axios.get(`${baseURL}api/products`);
   return request.then((response) => response.data);
 };
+
 
 const getProductDetails = (id) => {
   const request = axios.get(`${baseURL}api/products/${id}`);

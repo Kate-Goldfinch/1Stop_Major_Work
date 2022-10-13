@@ -55,17 +55,6 @@ router.get("/", async (req, res) => {
 	}
 });
 
-//Use regex to search users for partical username match, returns matches
-router.get("/search", async (req, res) => {
-	try{
-		const { searchTerm} = req.query;
-		const products = await Product.find({
-		  title: { $regex: searchTerm, $options: "i" },
-		});
-		res.status(200).json(products);
-	} catch(error) {
-		res.status(500).json(error);
-	}
-  });
+
 
 module.exports = router;

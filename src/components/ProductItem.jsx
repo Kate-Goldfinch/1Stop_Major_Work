@@ -24,13 +24,13 @@ export default function ProductItem({product}) {
         <Link to={`/products/${product._id}`} state={product}>
             <Card.Img
                 style={{ width: '222px', height: '200px'}}
-                src={product.image}
+                src={product.img}
             />
             <Card.Body>
-            <div class="row">
-                <Card.Title class="col-9 align-self-start">{product.title}</Card.Title>
+            <div className="row">
+                <Card.Title className="col-9 align-self-start">{product.title}</Card.Title>
                 <FaShoppingCart style={{width:"1.5em", height:"1.5em", color:"black"}}
-                                class="col align-self-end"
+                                className="col align-self-end"
                                 onClick = {onAddToCart}
                 />
             </div>

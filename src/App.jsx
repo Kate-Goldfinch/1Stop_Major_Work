@@ -21,29 +21,19 @@ const App = () => {
     return <div>Oops... {error.message}</div>;
   }
 
-  if (isAuthenticated) {
+
     return (
-      <div>
-        Hello {user.name}{" "}
-        <button onClick={() => logout({ returnTo: window.location.origin })}>
-          Log out
-        </button>
-        <Router>
-          <CartProvider>
-            <NavBar />
-            <Routes>
-              <Route path="/search" element={<SearchPage />} />
-              <Route path="/products/:id" element={<ProductPage />} />
-              <Route path="/" element={<HomePage />} />
-            </Routes>
-          </CartProvider>
-        </Router>
-      </div>
-    );
-  } else {
-    return (
-      <div>
+      <>
+        {isAuthenticated? 
+          <div> Hello {user.name}{" "}
+            <button onClick={() => logout({ returnTo: window.location.origin })}>
+              Log out
+            </button>
+          </div>
+          :
         <button onClick={loginWithRedirect}>Log in</button>
+        }
+
         <Router>
           <CartProvider>
             <NavBar />
@@ -54,9 +44,8 @@ const App = () => {
             </Routes>
           </CartProvider>
         </Router>
-      </div>
+      </>
     );
-  }
 };
 
 export default App;

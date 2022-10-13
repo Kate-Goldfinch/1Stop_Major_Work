@@ -50,7 +50,7 @@ const ProductPage = () => {
   return (
     <Container className='mt-4'>
         <img
-             src={product.image}
+             src={product.img}
              alt={product.title}
              width= {200}
              height = {300}
