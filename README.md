@@ -79,6 +79,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ### Week 2
 
 - oauth implemented
-- db connected to fronted
+- db connected to frontend
 - auth routes for backend
 - product route altered
