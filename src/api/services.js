@@ -29,10 +29,10 @@ const getProductDetails = (id) => {
 };
 
 
-// const submitProduct = (id, product) => {
-//   const request = axios.post(`${baseURL}api/products/${id}`, product);
-//   return request.then((response) => response.data);
-// };
+const createProduct = (product) => {
+  const request = axios.post(`${baseURL}api/products/`, product);
+  return request.then((response) => response.data);
+};
 
 // const deleteProduct = (productID) => {
 //   const request = axios.delete(
@@ -41,16 +41,17 @@ const getProductDetails = (id) => {
 //   return request.then((response) => response.data);
 // };
 
-// const updateProduct = (productID, newValue) => {
-//   const request = axios.put(
-//     `${baseURL}api/products/${productID}`,
-//     { product: newValue }
-//   );
-//   return request.then((response) => response.data);
-// };
+const updateProduct = (productID, newValue) => {
+  const request = axios.put(
+    `${baseURL}api/products/${productID}`, newValue
+  );
+  return request.then((response) => response.data);
+};
 
 export default {
   getProducts,
   getProductDetails,
-  searchProducts
+  searchProducts,
+  createProduct,
+  updateProduct
 };

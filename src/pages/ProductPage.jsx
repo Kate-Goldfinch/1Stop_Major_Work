@@ -26,8 +26,10 @@ const ProductPage = () => {
 
     const Dropdowns = product.options?.map(option =>{
         return (
-          <>
-            <div>{option.optionTitle}</div>
+          <div key = {option.optionTitle}>
+            <div >
+              {option.optionTitle}
+            </div>
             <Dropdown>
               <Dropdown.Toggle variant="secondary" id="dropdown-basic">
                 {optionState[option.optionTitle]}
@@ -36,14 +38,16 @@ const ProductPage = () => {
               <Dropdown.Menu>
                   {option.optionValues.map(optionValue => {
                     return(
-                    <Dropdown.Item onClick={()=> setOptionState({...optionState, [option.optionTitle]: optionValue})}>
+                    <Dropdown.Item 
+
+                      onClick={()=> setOptionState({...optionState, [option.optionTitle]: optionValue})}>
                       {optionValue}
                     </Dropdown.Item>
                     )
                   })}
               </Dropdown.Menu>
           </Dropdown>
-        </>
+        </div>
         )
       })
 

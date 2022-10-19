@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from "react-router-dom"
+import {Link, Outlet} from "react-router-dom"
 // import axios from "axios";
 import SearchBar from "./SearchBar";
 import { useCart } from "../hooks/useCart";
@@ -19,6 +19,7 @@ const NavBar = () => {
   // };
 
   return (
+    <>
     <Navbar bg="primary" variant="dark" expand="lg">
       <Container>
         <Link to="/">
@@ -47,6 +48,8 @@ const NavBar = () => {
           </div>
       </Container>
     </Navbar>
+    <Outlet />
+    </>
 
       
   );
