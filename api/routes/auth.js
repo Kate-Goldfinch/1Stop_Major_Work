@@ -12,7 +12,6 @@ router.post("/register", async (req, res) => {
 				username: req.body.username,
 				email: req.body.email,
 				password: hash,
-				admin: req.body.admin,
 			});
 			const returned = await user.save().catch((err) => {
 				res.status(401).json(err);
@@ -37,7 +36,7 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
 	try {
-		const user = await User.findOne({ username: req.body.username });
+		const user = await User.findOne({ email: req.body.email });
 		const password = req.body.password;
 		if (user) {
 			bcrypt.compare(password, user.password, function (err, result) {
