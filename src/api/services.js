@@ -34,12 +34,12 @@ const createProduct = (product) => {
   return request.then((response) => response.data);
 };
 
-// const deleteProduct = (productID) => {
-//   const request = axios.delete(
-//     `${baseURL}api/products/${productID}`
-//   );
-//   return request.then((response) => response.data);
-// };
+const deleteProduct = (productID) => {
+  const request = axios.delete(
+    `${baseURL}api/products/${productID}`
+  );
+  return request.then((response) => response.data);
+};
 
 const updateProduct = (productID, newValue) => {
   const request = axios.put(
@@ -53,5 +53,6 @@ export default {
   getProductDetails,
   searchProducts,
   createProduct,
-  updateProduct
+  updateProduct,
+  deleteProduct
 };

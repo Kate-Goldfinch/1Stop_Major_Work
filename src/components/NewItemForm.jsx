@@ -1,6 +1,8 @@
 import React,{useState} from 'react'
 import { Container, Modal, Button, Form, InputGroup } from 'react-bootstrap';
 import services from '../api/services';
+import FormDropdown from './FormDropdown';
+import {FaPlus} from 'react-icons/fa'
 
 const NewItemForm = ({setShowModal}) => {
 
@@ -9,19 +11,19 @@ const NewItemForm = ({setShowModal}) => {
     const [price, setPrice] = useState('')
     const [category, setCategory] = useState('')
     const [stock, setStock] = useState(0)
+    const [options, setOptions] = useState([])
+    const [img, setImg] = useState('')
 
     const onFormSubmit = ((e) =>{
       e.preventDefault()
       setShowModal(false)
-      console.log(e)
       const newProduct = { 
         title,
         description,
         price,
         category,
         stock,
-        img: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8dCUyMHNoaXJ0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60'
-
+        img
       }
       services.createProduct(newProduct)
         .then(response =>{
@@ -32,16 +34,24 @@ const NewItemForm = ({setShowModal}) => {
   return (
     <>
     <Modal.Header closeButton>
-    <Modal.Title>Modal heading</Modal.Title>
+    <Modal.Title>Create New Product</Modal.Title>
     </Modal.Header>
     <Modal.Body>
     <Form>
-      <Form.Group controlId="formFile" className="mb-3">
+
+      {/* for if we can upload images to db */}
+      
+      {/* <Form.Group controlId="formFile" className="mb-3">
         <Form.Label>Default file input example</Form.Label>
         <Form.Control 
           type="file"
           accept="image/png, image/gif, image/jpeg" />
-      </Form.Group>
+      </Form.Group> */}
+
+      <Form.Group controlId="formGridImg">
+          <Form.Label>Image URL</Form.Label>
+          <Form.Control value={img} onChange ={e => setImg(e.target.value)}/>
+        </Form.Group>
 
         <Form.Group controlId="formGridTitle">
           <Form.Label>Title</Form.Label>
@@ -63,10 +73,25 @@ const NewItemForm = ({setShowModal}) => {
           />
         </InputGroup>
 
+        <Form.Label>Options</Form.Label>
+        <Form.Group className="mb-3" controlId="formGridOptions">
+          <FormDropdown optionProp={[options,setOptions]}/>
+          <Button  
+            className="my-2"
+            variant="dark"
+            onClick = {()=> setOptions([...options, 
+              {optionTitle: '', optionValues:['']}
+            ])}>
+              Add Option Group<FaPlus/>
+        </Button>
+      </Form.Group>
+        
         <Form.Group className="mb-3" controlId="formGridCategory">
         <Form.Label>Category</Form.Label>
         <Form.Control value={category} onChange ={e => setCategory(e.target.value)}/>
       </Form.Group>
+
+
 
       <Form.Group className="mb-3" controlId="formGridStock">
         <Form.Label>Stock</Form.Label>
