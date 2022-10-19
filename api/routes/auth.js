@@ -2,6 +2,7 @@ require("dotenv").config();
 const router = require("express").Router();
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 //Register user
 router.post("/register", async (req, res) => {
@@ -11,6 +12,7 @@ router.post("/register", async (req, res) => {
 				username: req.body.username,
 				email: req.body.email,
 				password: hash,
+				admin: req.body.admin,
 			});
 			const returned = await user.save().catch((err) => {
 				res.status(401).json(err);
@@ -18,10 +20,15 @@ router.post("/register", async (req, res) => {
 
 			if (returned) {
 				if (user._id) {
-					res.status(200).json({
-						username: returned.username,
-						token: returned._id,
-					});
+					const token = jwt.sign(
+						{
+							id: user._id,
+							admin: user.admin,
+						},
+						"secret",
+						{ expiresIn: "1d" }
+					);
+					res.status(200).json({ user, token });
 				}
 			}
 		});
@@ -35,9 +42,18 @@ router.post("/login", async (req, res) => {
 		if (user) {
 			bcrypt.compare(password, user.password, function (err, result) {
 				if (result) {
+					const token = jwt.sign(
+						{
+							id: user._id,
+							admin: user.admin,
+						},
+						"secret",
+						{ expiresIn: "1d" }
+					);
+					const { password, ...userfields } = user;
 					res.status(200).json({
-						username: user.username,
-						token: user._id,
+						userfields,
+						token,
 					});
 				} else {
 					res.status(401).json("No matching user");

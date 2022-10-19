@@ -1,8 +1,9 @@
 const router = require("express").Router();
 const User = require("../models/User");
+const { verifyTokenAuth, verifyTokenAdmin } = require("./verify");
 
 //UPDATE
-router.put("/:id", async (req, res) => {
+router.put("/:id", verifyTokenAuth, async (req, res) => {
 	try {
 		const user = await User.findByIdAndUpdate(req.params.id, req.body, {
 			new: true,
@@ -15,7 +16,7 @@ router.put("/:id", async (req, res) => {
 });
 
 //DELETE
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", verifyTokenAuth, async (req, res) => {
 	try {
 		await User.findByIdAndDelete(req.params.id);
 		res.status(200).json(`User ID: ${req.params.id} deleted successfully`);
@@ -25,7 +26,7 @@ router.delete("/:id", async (req, res) => {
 });
 
 //GET
-router.get("/:id", async (req, res) => {
+router.get("/:id", verifyTokenAuth, async (req, res) => {
 	try {
 		const user = await User.findById(req.params.id);
 		const { password, ...userfields } = user._doc;
@@ -36,9 +37,9 @@ router.get("/:id", async (req, res) => {
 });
 
 //GET ALL
-router.get("/", async (req, res) => {
+router.get("/", verifyTokenAdmin, async (req, res) => {
 	try {
-		let users = await User.find();
+		const users = await User.find();
 		res.status(200).json(users);
 	} catch (error) {
 		res.status(500).json(error);

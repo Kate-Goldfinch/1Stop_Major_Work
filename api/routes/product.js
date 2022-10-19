@@ -1,8 +1,9 @@
 const router = require("express").Router();
 const Product = require("../models/Product");
+const { verifyTokenAdmin } = require("./verify");
 
 //CREATE
-router.post("/", async (req, res) => {
+router.post("/", verifyTokenAdmin, async (req, res) => {
 	console.log("creating");
 	const product = new Product(req.body);
 	try {
@@ -14,7 +15,7 @@ router.post("/", async (req, res) => {
 });
 
 //UPDATE
-router.put("/:id", async (req, res) => {
+router.put("/:id", verifyTokenAdmin, async (req, res) => {
 	try {
 		const product = await Product.findByIdAndUpdate(req.params.id, req.body, {
 			new: true,
@@ -26,7 +27,7 @@ router.put("/:id", async (req, res) => {
 });
 
 //DELETE
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", verifyTokenAdmin, async (req, res) => {
 	try {
 		await Product.findByIdAndDelete(req.params.id);
 		res.status(200).json(`Product ID: ${req.params.id} deleted successfully`);
@@ -55,6 +56,17 @@ router.get("/", async (req, res) => {
 	}
 });
 
-
+//Use regex to search users for partical match, returns matches
+router.get("/search", async (req, res) => {
+	try {
+		const { searchTerm } = req.query;
+		const products = await Product.find({
+			title: { $regex: searchTerm, $options: "i" },
+		});
+		res.status(200).json(products);
+	} catch (error) {
+		res.status(500).json(error);
+	}
+});
 
 module.exports = router;
