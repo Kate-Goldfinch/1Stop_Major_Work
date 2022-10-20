@@ -10,6 +10,13 @@ const order = require("./routes/order");
 const cors = require("cors");
 dotenv.config();
 
+
+const createCheckoutSession= require('./checkout');
+
+app.post('/create-checkout-session', createCheckoutSession);
+
+
+
 const databaseConnect = () => {
 	mongoose
 		.connect(process.env.MONGO_URL, {

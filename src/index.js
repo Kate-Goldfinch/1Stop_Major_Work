@@ -5,6 +5,11 @@ import ReactDOM from "react-dom";
 
 import App from "./App";
 
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js'
+
+const stripePromise = loadStripe(process.env.REACT_APP_PUBLISHABLE_KEY);
+
 ReactDOM.render(
   <Auth0Provider
     domain="dev-9zuuus2t.us.auth0.com"
