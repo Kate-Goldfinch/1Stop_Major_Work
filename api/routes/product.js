@@ -3,7 +3,8 @@ const Product = require("../models/Product");
 const { verifyTokenAdmin } = require("./verify");
 
 //CREATE
-router.post("/", verifyTokenAdmin, async (req, res) => {
+// ADMIN PROTECTED
+router.post("/", async (req, res) => {
 	console.log("creating");
 	const product = new Product(req.body);
 	try {
@@ -15,6 +16,7 @@ router.post("/", verifyTokenAdmin, async (req, res) => {
 });
 
 //UPDATE
+// ADMIN PROTECTED
 router.put("/:id", async (req, res) => {
 	try {
 		const product = await Product.findByIdAndUpdate(req.params.id, req.body, {
@@ -27,7 +29,8 @@ router.put("/:id", async (req, res) => {
 });
 
 //DELETE
-router.delete("/:id", verifyTokenAdmin, async (req, res) => {
+// ADMIN PROTECTED
+router.delete("/:id", async (req, res) => {
 	try {
 		await Product.findByIdAndDelete(req.params.id);
 		res.status(200).json(`Product ID: ${req.params.id} deleted successfully`);
