@@ -1,7 +1,9 @@
 import React, {useState} from 'react'
 import {useLocation, useNavigate } from 'react-router-dom';
-import { Container, Button, Form, InputGroup, Dropdown } from 'react-bootstrap';
+import { Container, Button, Form, InputGroup } from 'react-bootstrap';
 import services from '../api/services';
+import {FaPlus} from 'react-icons/fa'
+import FormDropdown from '../components/FormDropdown';
 
 const AdminItemPage = () => {
 
@@ -13,6 +15,7 @@ const AdminItemPage = () => {
     const [description, setDescription] = useState(product.description)
     const [price, setPrice] = useState(product.price)
     const [options, setOptions] = useState(product.options)
+    const [categories, setCategories] = useState(product.categories)
 
     const onFormSubmit = ((e) =>{
         e.preventDefault()
@@ -21,58 +24,16 @@ const AdminItemPage = () => {
             description,
             price,
             options,
+            categories,
         }
         services.updateProduct(product._id, newValue)
             .then(navigate(-1))
     })
 
-    const handleOptionTitleChange =(option, newTerm)=>{
-      const newArray = [...options]
-      let index = options.findIndex(opt => opt.optionTitle === option.optionTitle)
-      newArray[index]={...option, optionTitle : newTerm}
-      setOptions(newArray)
-    }
-
-    const handleOptionValuesChange =(option, optionValue, newTerm)=>{
-      const newArray = [...options]
-      let newOptions = [...option.optionValues]
-      newOptions.splice(option.optionValues.indexOf(optionValue), 1, newTerm);
-      let index = options.findIndex(opt => opt.optionTitle === option.optionTitle)
-      newArray[index]={...option, optionValues : newOptions}
-      setOptions(newArray)
-    }
-
-    const Dropdowns = options?.map((option, index) =>{
-      console.log(options)
-      return (
-        <div key = {index}>
-          <Form.Control 
-                    value={option.optionTitle}
-                    onChange={e=> handleOptionTitleChange(option, e.target.value)}
-                    />
-          <Dropdown>
-            <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-              {option.optionValues[0]}
-            </Dropdown.Toggle>
-        
-            <Dropdown.Menu>
-                {option.optionValues.map((optionValue, index) => {
-                  return(
-                    <Form.Control 
-                    key = {index}
-                    value={optionValue}
-                    onChange={e=> handleOptionValuesChange(option, optionValue, e.target.value)}
-                    />
-                  )
-                })}
-            </Dropdown.Menu>
-        </Dropdown>
-      </div>
-      )
-    })
+    
 
   return (
-    <Form>
+<Container>
         <img
              src={product.img}
              alt={product.title}
@@ -80,13 +41,13 @@ const AdminItemPage = () => {
              height = {300}
              priority="true"
         />
-
-        <Form.Group controlId="formGridTitle">
+        <Form>
+        <Form.Group className ='mb-3 w-25' controlId="formGridTitle">
           <Form.Label>Title</Form.Label>
           <Form.Control value={title} onChange ={e => setTitle(e.target.value)}/>
         </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formGridDescription">
+      <Form.Group className="mb-3 w-50" controlId="formGridDescription">
         <Form.Label>Description</Form.Label>
         <Form.Control 
           as="textarea" 
@@ -94,7 +55,8 @@ const AdminItemPage = () => {
           onChange ={e => setDescription(e.target.value)}/>
       </Form.Group>
 
-      <InputGroup className="mb-3" >
+      <Form.Label>Price</Form.Label>
+      <InputGroup className="mb-3 w-25">
         <InputGroup.Text>$</InputGroup.Text>
         <Form.Control 
             value={price}
@@ -103,11 +65,32 @@ const AdminItemPage = () => {
          />
       </InputGroup>
         
-        {Dropdowns}
+      <Form.Group className="mb-3 w-25" controlId="formGridOptions">
+        <Form.Label>Options</Form.Label>
+        <FormDropdown optionProp={[options,setOptions]}/>
+        <Button  
+          className="my-2"
+          variant="dark"
+          onClick = {()=> setOptions([...options, 
+            {optionTitle: '', optionValues:['']}
+          ])}>
+              Add Option Group<FaPlus/>
+        </Button>
+      </Form.Group>
 
-        
-        <Button onClick ={e=>onFormSubmit(e)}>Update Product </Button>
+      <Form.Group className="mb-3 w-25" controlId="formGridCategories">
+          <Form.Label>Categories</Form.Label>
+          <Form.Control value={categories} onChange ={e => setCategories(e.target.value)}/>
+        </Form.Group>
+
+      <Button  
+        className="my-2"
+        variant="primary"
+        size="lg"
+        onClick ={e=>onFormSubmit(e)}>
+        Update Product </Button>
       </Form>
+      </Container>
   )
 }
 

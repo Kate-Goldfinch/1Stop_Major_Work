@@ -12,7 +12,7 @@ const SearchBar = () =>{
     
     return (
             <Stack direction="horizontal" gap={2}> 
-                    <label>
+                    <label style={{color:"white"}}>
                         <AiOutlineSearch/>
                         Search products
                     </label>

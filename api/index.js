@@ -7,6 +7,7 @@ const product = require("./routes/product");
 const cart = require("./routes/cart");
 const auth = require("./routes/auth");
 const order = require("./routes/order");
+const search = require("./routes/search");
 const cors = require("cors");
 dotenv.config();
 
@@ -35,6 +36,7 @@ app.use(cors());
 app.use(express.json());
 app.use("/api/users", user);
 app.use("/api/products", product);
+app.use("/api/search", search);
 app.use("/api/carts", cart);
 app.use("/auth", auth);
 app.use("/api/orders", order);
