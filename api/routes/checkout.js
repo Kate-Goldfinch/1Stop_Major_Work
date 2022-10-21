@@ -1,6 +1,7 @@
-const stripeAPI = require("./stripe");
+const router = require("express").Router();
+const stripeAPI = require("../stripe");
 
-async function createCheckoutSession(req, res) {
+router.post("/", async (req, res) =>{
 	const domainUrl = process.env.WEB_APP_URL;
 	const { line_items, customer_email } = req.body;
 	//check req body has line items and email
@@ -31,6 +32,5 @@ async function createCheckoutSession(req, res) {
 			.status(400)
 			.json({ error: " An error occured, unable to create session" });
 	}
-}
-
-module.export = createCheckoutSession;
+})
+module.exports = router;

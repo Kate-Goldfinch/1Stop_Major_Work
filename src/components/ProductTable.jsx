@@ -10,12 +10,10 @@ const ProductTable = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    console.log('test')
     services.getProducts()
       .then(response =>{
         setProducts(response)
       return () => {
-        console.log('test2')
         setProducts([])
     }
   })

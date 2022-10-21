@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import { Container, Modal, Button, Form, InputGroup } from 'react-bootstrap';
+import {Modal, Button, Form, InputGroup } from 'react-bootstrap';
 import services from '../api/services';
 import FormDropdown from './FormDropdown';
 import {FaPlus} from 'react-icons/fa'
@@ -64,7 +64,7 @@ const NewItemForm = ({setShowModal}) => {
       </Form.Group>
 
       <Form.Label>Price</Form.Label>
-      <InputGroup className="mb-3" controlId="formGridPrice">
+      <InputGroup className="mb-3">
         <InputGroup.Text>$</InputGroup.Text>
           <Form.Control 
               value={price}

@@ -1,10 +1,9 @@
 import React from 'react'
-import { Container, Button, Form, InputGroup, Dropdown } from 'react-bootstrap';
+import {Button, Form, InputGroup, Dropdown } from 'react-bootstrap';
 import {FaPlus} from 'react-icons/fa'
 import {AiOutlineClose} from 'react-icons/ai'
 
 const FormDropdown = ({optionProp}) => {
-    console.log(optionProp)
     const [options, setOptions] = optionProp
 
     const handleOptionTitleChange =(option, newTerm)=>{

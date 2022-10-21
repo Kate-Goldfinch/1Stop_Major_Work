@@ -42,6 +42,11 @@ const updateProduct = (productID, newValue) => {
 	return request.then((response) => response.data);
 };
 
+const checkout = (cart) =>{
+	const request = axios.post(`${baseURL}create-checkout-session`, cart);
+	return request.then((response) => response.data);
+}
+
 export default {
 	getProducts,
 	getProductDetails,
@@ -49,4 +54,5 @@ export default {
 	createProduct,
 	updateProduct,
 	deleteProduct,
+	checkout
 };
