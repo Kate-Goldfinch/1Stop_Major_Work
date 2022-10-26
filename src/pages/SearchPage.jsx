@@ -1,10 +1,11 @@
 import React, {useState, useEffect}  from 'react'
 import ProductList from '../components/ProductList'
+import OptionDropdown from '../components/OptionDropdown';
 import api from '../api/services'
 import {useLocation} from "react-router-dom";
 import useSearch from '../hooks/useSearch'
-import Stack from 'react-bootstrap/Stack'
-import OptionDropdown from '../components/OptionDropdown';
+import {Stack, Container} from 'react-bootstrap'
+
 
 const SearchPage = () => {
   const search = useSearch();
@@ -24,7 +25,8 @@ const SearchPage = () => {
     }, [query, sortOption])
 
   return (
-    <>
+    <Container fluid style={{'backgroundColor': '#e3f2fd'}}>
+		<Container style={{'backgroundColor': 'white'}} className="p-4">
     {`${products.length} results for "${query}"`}
       <Stack direction="horizontal" gap={3}>
           Sort by: 
@@ -34,7 +36,8 @@ const SearchPage = () => {
           />
       </Stack>
       <ProductList products = {products}/>
-    </>
+    </Container>
+    </Container>  
   )
 }
 

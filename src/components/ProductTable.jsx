@@ -20,7 +20,7 @@ const ProductTable = () => {
 }, [])
 
   const onItemClick = ((product)=>{
-    navigate(`/admin/${product._id}`, {state: product});
+    navigate(`/admin/products/${product._id}`, {state: product});
 })
 
 const deleteProduct = (id)=>{
@@ -40,7 +40,7 @@ const deleteProduct = (id)=>{
                   <td onClick ={() => onItemClick(product)}>{product._id}</td>
                   <td onClick ={() => onItemClick(product)}>{product.title}</td>
                   <td onClick ={() => onItemClick(product)}>{product.description}</td>
-                  <td onClick ={() => onItemClick(product)}>{product.price}</td>
+                  <td onClick ={() => onItemClick(product)}>${product.price}</td>
                   <td onClick ={() => onItemClick(product)}>{product.categories?.toString()}</td>
                   <td><BsTrash onClick ={()=> deleteProduct(product._id)}/></td>
               </tr>

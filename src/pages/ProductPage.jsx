@@ -25,7 +25,7 @@ const ProductPage = () => {
 
 	const Dropdowns = product.options?.map((option) => {
 		return (
-			<div key={option.optionTitle}>
+			<div className='my-3' key={option.optionTitle}>
 				<div>{option.optionTitle}</div>
 				<Dropdown>
 					<Dropdown.Toggle variant="secondary" id="dropdown-basic">
@@ -54,7 +54,8 @@ const ProductPage = () => {
 	});
 
 	return (
-		<Container className="mt-4">
+		<Container fluid style={{'backgroundColor': '#e3f2fd'}}>
+		<Container style={{'backgroundColor': 'white'}} className="p-4">
 			<img
 				src={product.img}
 				alt={product.title}
@@ -63,8 +64,8 @@ const ProductPage = () => {
 				objectFit={"cover"}
 				priority="true"
 			/>
-			<p>{product.title}</p>
-			<p>${product.price}</p>
+			<h2>{product.title}</h2>
+			<h3>${product.price}</h3>
 			{Dropdowns}
 
 			<div className="py-2">
@@ -79,6 +80,7 @@ const ProductPage = () => {
 			<div>
 				<Button onClick={() => onAddToCart()}>Add to Cart</Button>
 			</div>
+		</Container>
 		</Container>
 	);
 };

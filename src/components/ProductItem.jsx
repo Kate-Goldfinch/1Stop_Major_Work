@@ -17,7 +17,7 @@ export default function ProductItem({ product }) {
 	};
 
 	return (
-		<Card style={{ width: "14em" }} className="my-3">
+		<Card style={{ width: "14em" }} className="my-3 mx-auto">
 			<Link to={`/products/${product._id}`} state={product}>
 				<Card.Img
 					style={{ width: "222px", height: "200px" }}

@@ -1,36 +1,35 @@
 import React from "react";
 import {Link, Outlet} from "react-router-dom"
-// import axios from "axios";
 import SearchBar from "./SearchBar";
 import { useCart } from "../hooks/useCart";
-import Button from 'react-bootstrap/Button'
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import {Button,Container, Nav, Navbar, Row, Col} from 'react-bootstrap'
 import { FaShoppingCart } from "react-icons/fa";
+import { useAuth0 } from "@auth0/auth0-react";
+import LoginButton from "../auth/login";
+import LogoutButton from "../auth/logout";
 
 const NavBar = () => {
   const {handleShowCart, totalItems} = useCart();
-
-  // const handleLogout = () => {
-  //   setUser(null);
-  //   setActiveConversation(null);
-  //   delete axios.defaults.headers.common["Authorization"];
-  // };
+  const { isAuthenticated} = useAuth0();
 
   return (
     <>
-    <Navbar bg="primary" variant="dark" expand="lg">
-      <Container>
+    <Navbar style={{'backgroundColor': '#e3f2fd'}} variant="light" expand="lg">
+      <Container fluid>
+      <Row className='w-100 d-flex flex-row'>
+        <Col className="d-flex flex-row justify-content-center">
         <Link to="/">
-          <Navbar.Brand>Test Store</Navbar.Brand>
+          <Navbar.Brand>HandMade Crafts</Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        {/* <Navbar.Collapse id="basic-navbar-nav"> */}
-          <Nav className="me-auto my-2 my-lg-0">
-            <Nav.Link href="#link">Link</Nav.Link>
+          <Nav className="my-2 my-lg-0">
+            <Nav.Link href="/">Products</Nav.Link>
           </Nav>
+          </Col>
+          <Col className="d-flex flex-row justify-content-center">
           <SearchBar/>
+          </Col>
+          <Col className="d-flex flex-row justify-content-end">
           <div className="justify-content-end px-3">
             <Button style={{width:"3em", height:"3em", position: "relative"}} 
                     onClick = {handleShowCart}
@@ -46,12 +45,13 @@ const NavBar = () => {
                     {totalItems}</div>}
             </Button>
           </div>
+          {isAuthenticated? <LogoutButton/> : <LoginButton/>}
+          </Col>
+          </Row>
       </Container>
     </Navbar>
     <Outlet />
-    </>
-
-      
+    </>  
   );
 };
 

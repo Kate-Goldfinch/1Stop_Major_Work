@@ -46,7 +46,7 @@ router.get("/:id", verifyTokenAuth, async (req, res) => {
 });
 
 //GET ALL
-router.get("/", verifyTokenAdmin, async (req, res) => {
+router.get("/", async (req, res) => {
 	try {
 		const orders = await Order.find();
 		res.status(200).json(orders);

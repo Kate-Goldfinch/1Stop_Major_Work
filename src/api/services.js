@@ -42,6 +42,11 @@ const updateProduct = (productID, newValue) => {
 	return request.then((response) => response.data);
 };
 
+const getOrders = () => {
+	const request = axios.get(`${baseURL}api/orders`);
+	return request.then((response) => response.data);
+};
+
 const checkout = (cart) =>{
 	const request = axios.post(`${baseURL}create-checkout-session`, cart);
 	return request.then((response) => response.data);
@@ -54,5 +59,6 @@ export default {
 	createProduct,
 	updateProduct,
 	deleteProduct,
+	getOrders,
 	checkout
 };
