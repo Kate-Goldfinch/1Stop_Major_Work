@@ -5,15 +5,15 @@ import ReactDOM from "react-dom";
 
 import App from "./App";
 
-import { Elements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js'
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 
 const stripePromise = loadStripe(process.env.REACT_APP_PUBLISHABLE_KEY);
 
 ReactDOM.render(
   <Auth0Provider
-    domain="dev-9zuuus2t.us.auth0.com"
-    clientId="InRJoXFdFycXxHKaHyTU55hUmrYIyXM4"
+    domain="dev-vy3a256hkmnp3qm0.us.auth0.com"
+    clientId="L1zoxcy9pj4Yqf2mpv4YXwRc7T51UO8W"
     redirectUri={window.location.origin}
   >
     <React.StrictMode>
