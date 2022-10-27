@@ -11,14 +11,15 @@ import { loadStripe } from "@stripe/stripe-js";
 const stripePromise = loadStripe(process.env.REACT_APP_PUBLISHABLE_KEY);
 
 ReactDOM.render(
-  <Auth0Provider
-    domain="dev-vy3a256hkmnp3qm0.us.auth0.com"
-    clientId="L1zoxcy9pj4Yqf2mpv4YXwRc7T51UO8W"
-    redirectUri={window.location.origin}
-  >
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </Auth0Provider>,
-  document.getElementById("root")
+	<Auth0Provider
+		domain="dev-vy3a256hkmnp3qm0.us.auth0.com"
+		clientId="L1zoxcy9pj4Yqf2mpv4YXwRc7T51UO8W"
+		connection="MongoDB"
+		redirectUri={window.location.origin}
+	>
+		<React.StrictMode>
+			<App />
+		</React.StrictMode>
+	</Auth0Provider>,
+	document.getElementById("root")
 );

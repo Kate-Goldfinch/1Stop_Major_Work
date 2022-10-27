@@ -42,15 +42,30 @@ const updateProduct = (productID, newValue) => {
 	return request.then((response) => response.data);
 };
 
+const getCart = (userID) => {
+	const request = axios.post(`${baseURL}api/cart`, cart);
+	return request.then((response) => response.data);
+};
+
+const createCart = (cart) => {
+	const request = axios.post(`${baseURL}api/cart`, cart);
+	return request.then((response) => response.data);
+};
+
+const updateCart = (cart) => {
+	const request = axios.put(`${baseURL}api/cart`, cart);
+	return request.then((response) => response.data);
+};
+
 const getOrders = () => {
 	const request = axios.get(`${baseURL}api/orders`);
 	return request.then((response) => response.data);
 };
 
-const checkout = (cart) =>{
+const checkout = (cart) => {
 	const request = axios.post(`${baseURL}create-checkout-session`, cart);
 	return request.then((response) => response.data);
-}
+};
 
 export default {
 	getProducts,
@@ -60,5 +75,5 @@ export default {
 	updateProduct,
 	deleteProduct,
 	getOrders,
-	checkout
+	checkout,
 };
