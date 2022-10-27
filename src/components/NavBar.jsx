@@ -1,5 +1,5 @@
 import React from "react";
-import {Link, Outlet} from "react-router-dom"
+import {Link} from "react-router-dom"
 import SearchBar from "./SearchBar";
 import { useCart } from "../hooks/useCart";
 import {Button,Container, Nav, Navbar, Row, Col} from 'react-bootstrap'
@@ -14,12 +14,19 @@ const NavBar = () => {
 
   return (
     <>
-    <Navbar style={{'backgroundColor': '#e3f2fd'}} variant="light" expand="lg">
+    <Navbar style={{'backgroundColor': '#e3f2fd'}} 
+            variant="light" 
+            expand="lg"
+            className='mb-2'>
       <Container fluid>
       <Row className='w-100 d-flex flex-row'>
         <Col className="d-flex flex-row justify-content-center">
-        <Link to="/">
-          <Navbar.Brand>HandMade Crafts</Navbar.Brand>
+        <Link to="/" style={{'textDecoration': 'none'}}>
+          <Navbar.Brand 
+            style={{'fontFamily':'Lucida Handwriting, Helvetica, sans-serif'}}
+            className='fw-semibold fs-3 '>
+              HandMade Crafts
+          </Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Nav className="my-2 my-lg-0">
@@ -50,7 +57,6 @@ const NavBar = () => {
           </Row>
       </Container>
     </Navbar>
-    <Outlet />
     </>  
   );
 };

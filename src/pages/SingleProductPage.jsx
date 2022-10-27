@@ -4,7 +4,7 @@ import { useCart } from "../hooks/useCart";
 import { Container, Button, Dropdown } from "react-bootstrap";
 import { FiMinus, FiPlus } from "react-icons/fi";
 
-const ProductPage = () => {
+const SingleProductPage = () => {
 	const product = useLocation().state;
 
 	//Create an object containing each option title as key and the first option value as its value
@@ -54,7 +54,6 @@ const ProductPage = () => {
 	});
 
 	return (
-		<Container fluid style={{'backgroundColor': '#e3f2fd'}}>
 		<Container style={{'backgroundColor': 'white'}} className="p-4">
 			<img
 				src={product.img}
@@ -81,8 +80,7 @@ const ProductPage = () => {
 				<Button onClick={() => onAddToCart()}>Add to Cart</Button>
 			</div>
 		</Container>
-		</Container>
 	);
 };
 
-export default ProductPage;
+export default SingleProductPage;

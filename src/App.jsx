@@ -1,17 +1,20 @@
-import { useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Outlet } from "react-router-dom";
-import "./App.css";
-import NavBar from "./components/NavBar";
-import HomePage from "./pages/HomePage";
-import ProductPage from "./pages/ProductPage";
-import SearchPage from "./pages/SearchPage";
-import { CartProvider } from "./hooks/useCart";
 import React from "react";
+import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import "./App.css";
+import { CartProvider } from "./hooks/useCart";
 import { useAuth0 } from "@auth0/auth0-react";
+
+import HomePage from "./pages/HomePage";
+import ProductPage from "./pages/SingleProductPage";
+import SearchPage from "./pages/SearchPage";
 import AdminPage from "./pages/AdminPage";
 import AdminItemPage from "./pages/AdminItemPage";
 import AdminOrdersPage from "./pages/AdminOrdersPage";
 import AdminProductsPage from "./pages/AdminProductsPage";
+import ProductsPage from "./pages/ProductsPage";
+
+
+
 
 const App = () => {
   // const [user, setUser] = useState(null);
@@ -30,17 +33,19 @@ const App = () => {
         <Router>
           <CartProvider>
             <Routes>
-                <Route element={<AdminPage/>}>
-                  <Route path="/admin/products" element={<AdminProductsPage />} />
-                  <Route path="/admin/orders" element={<AdminOrdersPage />} />
-                  <Route path="/admin/products/:id" element={<AdminItemPage />} />
-                  <Route path="/admin"  element={<AdminOrdersPage />} />
+              {/* Routes for admin interface */}
+                <Route path = "/admin" element={<AdminPage/>}>
+                  <Route index element={<AdminProductsPage />} />
+                  <Route path="products/:id" element={<AdminItemPage />} />
+                  <Route path="orders" element={<AdminOrdersPage />} />
                 </Route>
-                <Route element = {<NavBar />}>
-                  <Route path="/search" element={<SearchPage />} />
-                  <Route path="/products/:id" element={<ProductPage />} />
-                  <Route path="/" element={<HomePage />} />
-                  </Route>
+                {/* Routes for storefront */}
+                <Route path="/" element={<HomePage />}>
+                  <Route index element={<ProductsPage/>} />
+                  <Route path="products/:id" element={<ProductPage />} />
+                  <Route path="products/:id" element={<ProductPage />} />
+                  <Route path="search" element={<SearchPage />} />
+                </Route>
             </Routes>
           </CartProvider>
         </Router>

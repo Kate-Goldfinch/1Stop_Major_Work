@@ -1,5 +1,5 @@
 import React, {useState, useEffect}  from 'react'
-import ProductList from '../components/ProductList'
+import ProductList from './ProductsPage'
 import OptionDropdown from '../components/OptionDropdown';
 import api from '../api/services'
 import {useLocation} from "react-router-dom";
@@ -25,7 +25,7 @@ const SearchPage = () => {
     }, [query, sortOption])
 
   return (
-    <Container fluid style={{'backgroundColor': '#e3f2fd'}}>
+
 		<Container style={{'backgroundColor': 'white'}} className="p-4">
     {`${products.length} results for "${query}"`}
       <Stack direction="horizontal" gap={3}>
@@ -37,7 +37,6 @@ const SearchPage = () => {
       </Stack>
       <ProductList products = {products}/>
     </Container>
-    </Container>  
   )
 }
 
