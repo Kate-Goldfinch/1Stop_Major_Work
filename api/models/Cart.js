@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const cartSchema = new mongoose.Schema(
 	{
-		user: {
+		sub: {
 			type: String,
 			required: true,
 		},
