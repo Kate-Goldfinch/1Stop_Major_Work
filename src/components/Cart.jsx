@@ -7,9 +7,19 @@ import { HiOutlineShoppingBag } from "react-icons/hi";
 
 const Cart = ({showCart}) => {
     const {cart, totalItems, handleCloseCart} = useCart()
+
     const renderedList = cart.map(item=> <CartItem key={item.product._id} item={item}/>)
-    
-  return (
+    const lineItems = cart.map(item => ({_id: item.product._id, quantity:item.quantity}))
+  
+    const handleCheckout = () => {
+        services.checkout(lineItems)
+        .then((url)=>{
+             window.location.href = url   
+        })
+
+    } 
+  
+    return (
     <Offcanvas show={showCart} onHide={handleCloseCart} placement="end" scroll='true'>
         <Offcanvas.Header closeButton>
             <Offcanvas.Title>Your Cart</Offcanvas.Title>
@@ -24,7 +34,7 @@ const Cart = ({showCart}) => {
                 {renderedList}
                 <Button 
                 variant="outline-secondary"
-                onClick = {()=> services.checkout(cart)}
+                onClick = {()=> handleCheckout()}
                 >Go to Checkout</Button>
             </Stack>}
         </Offcanvas.Body>

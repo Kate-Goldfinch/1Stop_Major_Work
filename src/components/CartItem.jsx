@@ -4,7 +4,6 @@ import {Stack,Button} from 'react-bootstrap'
 
 const CartItem = ({item}) => {
 const product = item.product
-console.log(item.options)
 const {removeFromCart} = useCart()
 const currency = new Intl.NumberFormat('en-US', {
         style: 'currency',

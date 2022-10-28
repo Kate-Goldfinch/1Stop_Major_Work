@@ -62,10 +62,11 @@ const getOrders = () => {
 	return request.then((response) => response.data);
 };
 
-const checkout = (cart) => {
-	const request = axios.post(`${baseURL}create-checkout-session`, cart);
-	return request.then((response) => response.data);
+const checkout = (line_items) => {
+	const request = axios.post(`${baseURL}create-checkout-session`, line_items)
+	return request.then((response) => response.data.url)
 };
+
 
 export default {
 	getProducts,
