@@ -10,8 +10,8 @@ const cart = require("./routes/cart");
 const order = require("./routes/order");
 const search = require("./routes/search");
 const checkOut = require("./routes/checkout");
+const stripe = require("./routes/stripe")
 const cors = require("cors");
-
 
 const databaseConnect = () => {
 	mongoose
@@ -28,14 +28,17 @@ const databaseConnect = () => {
 };
 
 app.use(cors());
+
+app.use("/stripe", stripe)
+
 app.use(express.json());
 // app.use("/auth", auth);
-app.use("/create-checkout-session", checkOut);
 app.use("/api/users", user);
 app.use("/api/products", product);
 app.use("/api/search", search);
 app.use("/api/carts", cart);
 app.use("/api/orders", order);
+
 
 const PORT = process.env.PORT || 3001;
 
@@ -44,3 +47,6 @@ databaseConnect();
 app.listen(PORT, function () {
 	console.log(`Backend running on port: ${PORT}`);
 });
+
+
+app.use("/create-checkout-session", checkOut);

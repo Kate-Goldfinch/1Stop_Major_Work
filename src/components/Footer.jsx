@@ -1,14 +1,14 @@
 import React from 'react'
-import logo from '../OneStopLogo.svg'
+import logo from '../OneStopLogo.png'
 
 const Footer = () => {
   return (
     <div className='d-flex justify-content-end align-items-center py-4'>
-        Powered by <span className='fw-bold mx-1'>1Stop</span>  
+        Powered by
         <embed
-        alt="1Stop Logo"
+        alt="1Stop"
         src={logo}
-        width="45"
+        width="100"
         height="45"
         className="d-inline-block mx-2"
     />

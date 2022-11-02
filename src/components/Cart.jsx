@@ -12,6 +12,7 @@ const Cart = ({showCart}) => {
     const lineItems = cart.map(item => ({_id: item.product._id, quantity:item.quantity}))
   
     const handleCheckout = () => {
+        console.log(lineItems)
         services.checkout(lineItems)
         .then((url)=>{
              window.location.href = url   

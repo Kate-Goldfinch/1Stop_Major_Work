@@ -60,7 +60,7 @@ const SingleProductPage = () => {
 				alt={product.title}
 				width={"auto"}
 				height={300}
-				objectFit={"cover"}
+				objectfit={"cover"}
 				priority="true"
 			/>
 			<h2>{product.title}</h2>

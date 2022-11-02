@@ -5,7 +5,7 @@ import { CartProvider } from "./hooks/useCart";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import HomePage from "./pages/HomePage";
-import ProductPage from "./pages/SingleProductPage";
+import SingleProductPage from "./pages/SingleProductPage";
 import SearchPage from "./pages/SearchPage";
 import AdminPage from "./pages/AdminPage";
 import AdminItemPage from "./pages/AdminItemPage";
@@ -42,8 +42,7 @@ const App = () => {
                 {/* Routes for storefront */}
                 <Route path="/" element={<HomePage />}>
                   <Route index element={<ProductsPage/>} />
-                  <Route path="products/:id" element={<ProductPage />} />
-                  <Route path="products/:id" element={<ProductPage />} />
+                  <Route path="products/:id" element={<SingleProductPage />} />
                   <Route path="search" element={<SearchPage />} />
                 </Route>
             </Routes>

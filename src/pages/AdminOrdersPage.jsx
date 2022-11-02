@@ -22,6 +22,7 @@ const orderTable = () =>{
         <tr>
           <th></th>
           <th>Order ID</th>
+          <th>Name</th>
           <th>Amount</th>
           <th>Status</th>
           <th></th>
@@ -34,8 +35,9 @@ const orderTable = () =>{
                {console.log('test')}
               <td><Form.Check aria-label={`Select order`} /></td>
               <td>{order._id}</td>
+              <td>{order.name}</td>
               <td>${order.amount}</td>
-              <td>${order.status}</td>
+              <td>{order.status}</td>
           </tr>
           )
         }): 'No orders have been placed'}
