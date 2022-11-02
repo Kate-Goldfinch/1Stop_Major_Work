@@ -10,7 +10,7 @@ import LogoutButton from "../auth/logout";
 
 const NavBar = () => {
   const {handleShowCart, totalItems} = useCart();
-  const { isAuthenticated} = useAuth0();
+  const { user, isAuthenticated} = useAuth0();
 
   return (
     <>
@@ -52,6 +52,7 @@ const NavBar = () => {
                     {totalItems}</div>}
             </Button>
           </div>
+          {console.log(user)}
           {isAuthenticated? <LogoutButton/> : <LoginButton/>}
           </Col>
           </Row>

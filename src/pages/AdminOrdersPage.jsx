@@ -21,11 +21,10 @@ const orderTable = () =>{
       <thead>
         <tr>
           <th></th>
-          <th>Order ID</th>
-          <th>Name</th>
+          <th>Order No.</th>
+          <th>Customer Name</th>
           <th>Amount</th>
           <th>Status</th>
-          <th></th>
         </tr>
       </thead>
       <tbody>

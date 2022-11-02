@@ -4,7 +4,7 @@ import { useCart } from "../hooks/useCart";
 import { Container, Button, Dropdown } from "react-bootstrap";
 import { FiMinus, FiPlus } from "react-icons/fi";
 
-const SingleProductPage = () => {
+const ItemPage = () => {
 	const product = useLocation().state;
 
 	//Create an object containing each option title as key and the first option value as its value
@@ -25,7 +25,7 @@ const SingleProductPage = () => {
 
 	const Dropdowns = product.options?.map((option) => {
 		return (
-			<div className='my-3' key={option.optionTitle}>
+			<div className='my-3 d-flex-column' key={option.optionTitle}>
 				<div>{option.optionTitle}</div>
 				<Dropdown>
 					<Dropdown.Toggle variant="secondary" id="dropdown-basic">
@@ -83,4 +83,4 @@ const SingleProductPage = () => {
 	);
 };
 
-export default SingleProductPage;
+export default ItemPage;

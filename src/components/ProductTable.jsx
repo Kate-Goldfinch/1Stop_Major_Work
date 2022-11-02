@@ -1,13 +1,13 @@
-import React,{useState, useEffect} from 'react'
+import React, {useEffect} from 'react'
 import {Form, Table} from 'react-bootstrap';
 import {useNavigate} from 'react-router-dom'
 import services from '../api/services'
 import {BsTrash} from 'react-icons/bs'
 
-const ProductTable = () => {
+const ProductTable = ({productState}) => {
 
   const navigate = useNavigate();
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = productState
 
   useEffect(() => {
     services.getProducts()

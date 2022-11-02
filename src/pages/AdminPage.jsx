@@ -13,7 +13,8 @@ const AdminPage = () => {
     <Container>
       <Navbar.Brand className='d-flex' href="/admin">
         <embed
-STRIPE_WEBHOOK_SECRET          src={logo}
+          alt="1Stop"
+          src={logo}
           width="125"
           height="50"
           className="d-inline-block align-top"

@@ -65,7 +65,7 @@ const AdminItemPage = () => {
          />
       </InputGroup>
         
-      <Form.Group className="mb-3 w-25" controlId="formGridOptions">
+      <Form.Group className="mb-3 w-25 d-flex flex-column" controlId="formGridOptions">
         <Form.Label>Options</Form.Label>
         <FormDropdown optionProp={[options,setOptions]}/>
         <Button  

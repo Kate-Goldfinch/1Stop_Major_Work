@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router()
 const Order = require("../models/Order");
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
-
+const {EmailSender} = require('../EmailSender.js')
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET
  
 router.post('/webhook',express.raw({type: "*/*"}), (request, response) => {
@@ -17,9 +17,8 @@ router.post('/webhook',express.raw({type: "*/*"}), (request, response) => {
   }
 
   //add order details to database
-  const handleNewOrder = async (data, customer)  =>{
+  const handleNewOrder = async (data, cart)  =>{
 
-    let cart = JSON.parse(customer.metadata.cart)
     let products = cart.map(item => {
       return{
         productId: item._id,
@@ -43,8 +42,9 @@ router.post('/webhook',express.raw({type: "*/*"}), (request, response) => {
     stripe.customers.retrieve(event.data.object.customer)
     .then((customer) => {
         console.log(customer)
-        handleNewOrder(event.data.object, customer)
-
+        let cart = JSON.parse(customer.metadata.cart)
+        handleNewOrder(event.data.object, cart)
+        EmailSender(event.data.object, cart);
       })
     
     
@@ -55,5 +55,4 @@ router.post('/webhook',express.raw({type: "*/*"}), (request, response) => {
   // Return a 200 response to acknowledge receipt of the event
   response.send();
 });
-
 module.exports = router;

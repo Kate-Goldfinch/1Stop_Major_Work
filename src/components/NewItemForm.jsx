@@ -4,12 +4,14 @@ import services from '../api/services';
 import FormDropdown from './FormDropdown';
 import {FaPlus} from 'react-icons/fa'
 
-const NewItemForm = ({setShowModal}) => {
+const NewItemForm = ({setShowModal, productState}) => {
+
+    const [products, setProducts] = productState
 
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [price, setPrice] = useState('')
-    const [category, setCategory] = useState('')
+    const [categories, setCategories] = useState('')
     const [stock, setStock] = useState(0)
     const [options, setOptions] = useState([])
     const [img, setImg] = useState('')
@@ -21,13 +23,16 @@ const NewItemForm = ({setShowModal}) => {
         title,
         description,
         price,
-        category,
+        categories,
         stock,
         img
       }
       services.createProduct(newProduct)
-        .then(response =>{
-          console.log(response)
+        .then(() =>{
+          services.getProducts()
+          .then(response =>{
+            setProducts(response)
+          })
   })
 })
 
@@ -88,7 +93,7 @@ const NewItemForm = ({setShowModal}) => {
         
         <Form.Group className="mb-3" controlId="formGridCategory">
         <Form.Label>Category</Form.Label>
-        <Form.Control value={category} onChange ={e => setCategory(e.target.value)}/>
+        <Form.Control value={categories} onChange ={e => setCategories(e.target.value)}/>
       </Form.Group>
 
 

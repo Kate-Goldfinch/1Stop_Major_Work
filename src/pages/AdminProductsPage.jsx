@@ -5,6 +5,8 @@ import {Button, Container, Modal} from 'react-bootstrap'
 
 const AdminProductsPage = () => {
     const [showModal, setShowModal] = useState(false);
+    const [products, setProducts] = useState([]);
+
     return (
         <Container fluid>
         <Button 
@@ -13,10 +15,15 @@ const AdminProductsPage = () => {
             >+ Create New Product</Button>
         <div>
             <h2 className="mt-2">Products</h2>
-            <ProductTable/>
+            <ProductTable productState={[products, setProducts]}/>
         </div>
-        <Modal show={showModal} onHide={()=>setShowModal(false)}>
-            <NewItemForm setShowModal={setShowModal}/>
+        <Modal show={showModal} 
+                onHide={()=>setShowModal(false)}
+                backdrop="static">
+            <NewItemForm 
+            setShowModal={setShowModal}
+            productState={[products, setProducts]}
+            />
         </Modal>
     </Container>
   )
