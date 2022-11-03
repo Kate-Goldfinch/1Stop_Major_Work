@@ -26,7 +26,7 @@ const App = () => {
     return <div>Oops... {error.message}</div>;
   }
   
-document.querySelector('div[data-lastpass-root]:not([value=""])').style.display= 'none'
+// document.querySelector('div[data-lastpass-root]:not([value=""])').style.display= 'none'
 
     return (
       <>
