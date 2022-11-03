@@ -18,7 +18,7 @@ export default function ProductsPage() {
       <Container
         className = 'h-100' 
         style={{'backgroundColor': 'white'}}>
-        <Row xs={1} md={2} lg={4} className="g-4">
+        <Row xs={1} md={2} lg={4} className="g-1`">
             {products.map((product) =>(
               <Col key={product._id}>
                 <ProductItem product={product}/>

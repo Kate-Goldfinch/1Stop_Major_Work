@@ -12,9 +12,7 @@ import AdminItemPage from "./pages/AdminItemPage";
 import AdminOrdersPage from "./pages/AdminOrdersPage";
 import AdminProductsPage from "./pages/AdminProductsPage";
 import ProductsPage from "./pages/ProductsPage";
-
-
-
+import SuccessPage from "./pages/SuccessPage";
 
 const App = () => {
   // const [user, setUser] = useState(null);
@@ -47,6 +45,7 @@ document.querySelector('div[data-lastpass-root]:not([value=""])').style.display=
                   <Route index element={<ProductsPage/>} />
                   <Route path="products/:id" element={<ItemPage />} />
                   <Route path="search" element={<SearchPage />} />
+                  <Route path="success" element={<SuccessPage />} />
                 </Route>
             </Routes>
           </CartProvider>

@@ -11,6 +11,7 @@ const AdminProductsPage = () => {
         <Container fluid>
         <Button 
             className="float-end"
+            variant="danger" 
             onClick={()=>setShowModal(true)}
             >+ Create New Product</Button>
         <div>

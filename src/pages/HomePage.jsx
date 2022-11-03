@@ -8,7 +8,7 @@ const HomePage = () => {
 
   return (
       <Container fluid 
-        style={{'backgroundColor': '#e3f2fd', 'height':'max(100vh,100%)'}}>
+        style={{'backgroundColor': '#e3f2fd'}}>
           <NavBar/>
         <Outlet/>
         <Footer/>

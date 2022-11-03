@@ -111,7 +111,7 @@ const NewItemForm = ({setShowModal, productState}) => {
               onClick={()=> setShowModal(false)}>Close
           </Button>
           <Button 
-              variant="primary" 
+              variant="danger" 
               onClick ={(e)=>onFormSubmit(e)}>Add Product 
           </Button>
       </Modal.Footer>

@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link, Outlet} from "react-router-dom"
+import {Outlet} from "react-router-dom"
 import logo from '../OneStopLogo.png'; 
 import {Nav, Navbar, Container}  from 'react-bootstrap'
 
@@ -8,7 +8,7 @@ import {Nav, Navbar, Container}  from 'react-bootstrap'
 const AdminPage = () => {
 
   return (
-    <>
+    <Container fluid>
     <Navbar bg="light" variant="light">
     <Container>
       <Navbar.Brand className='d-flex' href="/admin">
@@ -27,7 +27,7 @@ const AdminPage = () => {
     </Container>
   </Navbar>
   <Outlet />
-</>
+</Container>
   )
 }
 
