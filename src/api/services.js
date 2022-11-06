@@ -2,16 +2,18 @@ import axios from "axios";
 
 const baseURL = "http://localhost:3001/";
 
-// const createUser = (user) => {
-//   const request = axios.post(baseURL + "auth/register", user);
-//   return request.then((response) => response.data);
-// };
+const getToken = (user) => {
+  const request = axios.post(baseURL + "auth/token", {email: user.email});
+  return request.then((response) => response.data);
+};
 
-// const login = (user) => {
-//   const request = axios.post(baseURL + "auth", user);
-//   return request.then((response) => response.data);
-// };
-
+const checkAdmin = async ({token})  => {
+	const request = axios.get(baseURL + "auth", { headers: {"Authorization" : `Bearer ${token}`} });
+	let isAdmin = await request.then((response) => response.data)
+	console.log(isAdmin)
+	if(isAdmin) axios.defaults.headers.common["Authorization"] = `Bearer ${token}`
+	return isAdmin;
+  };
 const searchProducts = (params) => {
 	const request = axios.get(`${baseURL}api/search`, { params });
 	return request.then((response) => response.data);
@@ -69,6 +71,8 @@ const checkout = (line_items) => {
 
 
 export default {
+	getToken,
+	checkAdmin,
 	getProducts,
 	getProductDetails,
 	searchProducts,

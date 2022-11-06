@@ -2,12 +2,13 @@ const jwt = require("jsonwebtoken");
 
 const verifyToken = (req, res, next) => {
 	const token = req.headers.token?.split(" ")[1];
+	console.log(token);
 	if (token) {
-		// const token = authHeader.split(" ")[1];
 		jwt.verify(token, "secret", (err, user) => {
 			if (err) {
 				return res.status(403).json("Not valid.");
 			}
+			console.log("verified");
 			req.user = user;
 			next();
 		});
@@ -18,7 +19,8 @@ const verifyToken = (req, res, next) => {
 
 const verifyTokenAuth = (req, res, next) => {
 	verifyToken(req, res, () => {
-		if (req.user.id === req.params.id || req.user.admin) {
+		console.log(req.params);
+		if (req.user.email === req.params.email || req.user.admin) {
 			next();
 		} else {
 			return res.status(403).json("Not authorized.");

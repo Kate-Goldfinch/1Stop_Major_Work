@@ -3,16 +3,26 @@ const router = require("express").Router();
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { verifyTokenAuth, verifyTokenAdmin } = require("./verify");
+
+router.get("/", verifyTokenAdmin, async (req, res) => {
+	try {
+		res.status(200).json(true);
+	} catch (error) {
+		res.status(500).json(error);
+	}
+});
 
 router.post("/token", async (req, res) => {
 	const email = req.body.email;
 	if (email) {
 		try {
 			const user = await User.find({ email: email });
+			console.log(user);
 			const token = jwt.sign(
 				{
-					id: user._id,
-					admin: user.admin,
+					id: user[0].id,
+					admin: user[0].admin,
 				},
 				"secret",
 				{ expiresIn: "1d" }
