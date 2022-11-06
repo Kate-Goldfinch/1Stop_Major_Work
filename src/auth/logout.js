@@ -7,8 +7,10 @@ const LogoutButton = () => {
 
   return (
     <>
-      <div> Hello {user.name}{" "}
-      <Button onClick={() => logout({ returnTo: window.location.origin })}>
+      <div> Hello {user.nickname}{" "}
+      <Button 
+        className="mx-1"
+        onClick={() => logout({ returnTo: window.location.origin })}>
         Log Out
       </Button>
       </div>
