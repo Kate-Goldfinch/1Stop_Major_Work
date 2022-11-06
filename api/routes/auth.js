@@ -14,15 +14,15 @@ router.get("/", verifyTokenAdmin, async (req, res) => {
 });
 
 router.post("/token", async (req, res) => {
-	console.log(req.body)
 	const email = req.body.email;
 	if (email) {
 		try {
 			const user = await User.find({ email: email });
+			console.log(user);
 			const token = jwt.sign(
 				{
-					id: user._id,
-					admin: user.admin,
+					id: user[0].id,
+					admin: user[0].admin,
 				},
 				"secret",
 				{ expiresIn: "1d" }
