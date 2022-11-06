@@ -31,7 +31,6 @@ const orderTable = () =>{
       {orders.length!==0 ? orders.map((order)=>{
           return(
           <tr key={order._id}>
-               {console.log('test')}
               <td><Form.Check aria-label={`Select order`} /></td>
               <td>{order._id}</td>
               <td>{order.name}</td>

@@ -52,7 +52,6 @@ const NavBar = () => {
                     {totalItems}</div>}
             </Button>
           </div>
-          {console.log(user)}
           {isAuthenticated? <LogoutButton/> : <LoginButton/>}
           </Col>
           </Row>

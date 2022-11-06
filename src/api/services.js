@@ -9,8 +9,7 @@ const getToken = (user) => {
 
 const checkAdmin = async ({token})  => {
 	const request = axios.get(baseURL + "auth", { headers: {"Authorization" : `Bearer ${token}`} });
-	let isAdmin = await request.then((response) => response.data)
-	console.log(isAdmin)
+	let isAdmin = await request.then((response) => response.data=== "Verified")
 	if(isAdmin) axios.defaults.headers.common["Authorization"] = `Bearer ${token}`
 	return isAdmin;
   };

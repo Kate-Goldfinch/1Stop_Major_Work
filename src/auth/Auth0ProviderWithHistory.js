@@ -15,6 +15,7 @@ const Auth0ProviderWithHistory = ({ children }) => {
       connection="MongoDB"
       redirectUri={window.location.origin}
       onRedirectCallback={onRedirectCallback}
+      cacheLocation="localstorage"
     >
       {children}
     </Auth0Provider>

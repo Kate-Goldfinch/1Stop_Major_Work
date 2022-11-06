@@ -3,11 +3,8 @@ const {getProduct} = require('./routes/product')
 
 const EmailSender = async (data, cart) => {
 
-  let testAccount = await nodemailer.createTestAccount();
-
   const ProductsListings = await Promise.all(cart.map(async item =>{
     let product = await getProduct(item._id)
-    console.log(product)
     return(
       `
         <tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
@@ -84,7 +81,6 @@ const EmailSender = async (data, cart) => {
   </html>
 `
   try {
-    console.log('test')
     let transporter = nodemailer.createTransport({
       service:"hotmail",
       port: 587,
@@ -106,7 +102,6 @@ const EmailSender = async (data, cart) => {
       text: "Hello world?", 
       html: output,
     });
-    console.log(info)
   } catch (error) {
     console.log(error);
   }

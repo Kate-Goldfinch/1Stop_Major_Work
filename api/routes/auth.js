@@ -7,7 +7,7 @@ const { verifyTokenAuth, verifyTokenAdmin } = require("./verify");
 
 router.get("/", verifyTokenAdmin, async (req, res) => {
 	try {
-		res.status(200).json(true);
+		res.status(200).json("Verified");
 	} catch (error) {
 		res.status(500).json(error);
 	}
@@ -18,7 +18,6 @@ router.post("/token", async (req, res) => {
 	if (email) {
 		try {
 			const user = await User.find({ email: email });
-			console.log(user);
 			const token = jwt.sign(
 				{
 					id: user[0].id,
