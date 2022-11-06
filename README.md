@@ -1,6 +1,6 @@
-#1Stop
+# 1Stop
 
-##Outline
+### Outline
 
 We have developed an e-commerce platform that may be utilised by businesses looking to sell good online. The website will be geared towards smaller businesses in niche   markets that want a straight forward way to handle payments and control their offereings.
 
