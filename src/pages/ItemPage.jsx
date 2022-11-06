@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useCart } from "../hooks/useCart";
-import { Container, Button, Dropdown } from "react-bootstrap";
+import { Container, Button, Dropdown, Col } from "react-bootstrap";
 import { FiMinus, FiPlus } from "react-icons/fi";
 
 const ItemPage = () => {
@@ -54,17 +54,18 @@ const ItemPage = () => {
 	});
 
 	return (
-		<Container style={{'backgroundColor': 'white'}} className="p-4">
+		<Container style={{'backgroundColor': 'white'}} className="p-5 w-50">
 			<img
 				src={product.img}
 				alt={product.title}
 				width={"auto"}
-				height={300}
+				height={350}
 				objectfit={"cover"}
 				priority="true"
 			/>
-			<h2>{product.title}</h2>
+			<h2 className="pt-2">{product.title}</h2>
 			<h3>${product.price}</h3>
+			<p className="w-50">{product.description}</p>
 			{Dropdowns}
 
 			<div className="py-2">
