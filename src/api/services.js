@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "http://localhost:3001/";
+const baseURL = "https://cute-pear-caridea-gown.cyclic.app/";
 
 const getToken = (user) => {
   const request = axios.post(baseURL + "auth/token", {email: user.email});
